@@ -33,67 +33,74 @@
             return [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
         }
 
-        function novoJogo() {
-            buttons.forEach(button => {
-                button.addEventListener("click", () => {
-                    if (verificarFim(jogadorValue)) return
-                    
-                    if (!button.classList.contains("selected")) {
-                        buttonValue = button.textContent.toString()
-                        jogadorValue = jogador.textContent.toString()
-                        novaJogada(buttonValue, jogadorValue)
-                        button.classList.add("selected")
-                        button.innerText = jogadorValue
-                        jogador.innerText = mudarJogador(jogadorValue)
-                    }
-                })
-            })
-        }
-
-        function novaJogada(button, jogador) {
-            for (let c = 0; c < 3; c++) {
-                for (let i = 0; i < 3; i++) {
-                    if (posicoes[c][i] == button) {
-                        posicoes[c][i] = jogador
-                    }
-                }
+        function verificarJogada(buttonValue, button) {
+            if (buttonValue != "X" && buttonValue != "O" && !fim) {
+                novaJogada(buttonValue, button)
             }
         }
 
-        function mudarJogador(jogador) {
-            if (jogador === "X") return "O"
-
-            return "X"
+        function novaJogada(buttonValue, button) {
+            const jogadorValue = jogador.innerText;
+            for (let c = 0; c < 3; c++) {
+                for (let i = 0; i < 3; i++) {
+                    if (posicoes[c][i] == buttonValue) {
+                        posicoes[c][i] = jogadorValue
+                    }
+                }
+            }
+            button.classList.add("selected")
+            button.innerText = jogadorValue
+            if (verificarFim(jogadorValue)) {
+                return
+            }
+            mudarJogador(jogadorValue)
         }
 
-        function verificarFim(jogador) {
+        function mudarJogador(jogadorValue) {
+            if (jogadorValue == "X") {
+                jogador.innerText = "O"
+            } else {
+                jogador.innerText = "X"
+            }
+        }
+
+        function verificarFim(jogadorValue) {
+            console.log("verificando")
             let linha = 0;
             let coluna = 0;
             for (let c = 0; c < 3; c++) {
-                for (let i = 0; i < 3; i++) {
-                    // Verifica final em linha
-                    if (posicoes[c][i] == jogador) {
-                        linha++
-                    }
+                for (let l = 0; l < 3; l++) {
                     // Verifica final em coluna
-                    if (posicoes[i][c] == jogador) {
+                    if (posicoes[l][c] == jogadorValue) {
                         coluna++
                     }
+                    // Verifica final em linha
+                    if (posicoes[c][l] == jogadorValue) {
+                        linha++
+                    }
                 }
-                if (linha === 3 || coluna === 3) return true
-                
+                if (linha === 3) {
+                    console.log(`linha: ${posicoes}`)
+                    return fim = true
+                } else if (coluna === 3) {
+                    console.log(`coluna: ${posicoes}`)
+                    return fim = true
+                }
                 linha = 0
                 coluna = 0
             }
             // Verifica final na diágonal
-            if (posicoes[0][0] == jogador && posicoes[1][1] == jogador && posicoes[2][2] == jogador) {
-                return true
-            } else if (posicoes[0][2] == jogador && posicoes[1][1] == jogador && posicoes[2][0] == jogador) {
-                return true
+            if (posicoes[0][0] == jogadorValue && posicoes[1][1] == jogadorValue && posicoes[2][2] == jogadorValue) {
+                console.log(`diagonal 1: ${posicoes}`)
+                return fim = true
+            } else if (posicoes[0][2] == jogadorValue && posicoes[1][1] == jogadorValue && posicoes[2][0] == jogadorValue) {
+                console.log(`diagonal 2: ${posicoes}`)
+                return fim = true
             }
         }
 
         function resetar() {
+            fim = false
             jogador.innerText = "X"
             posicoes = fillArray()
             let num = 1;
@@ -101,17 +108,20 @@
                 button.classList.remove("selected")
                 button.innerText = num++
             })
-            novoJogo()
         }
 
         const buttons = document.querySelectorAll(".btn")
         const reset = document.querySelector("#btn-reset")
         const jogador = document.querySelector("#jogador span")
         let posicoes = fillArray()
-        let buttonValue;
-        let jogadorValue;
-    
-        novoJogo()
+        let fim = false
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const buttonValue = button.innerText
+                verificarJogada(buttonValue, button)
+            })
+        })
 
         reset.addEventListener("click", resetar);
     </script>
