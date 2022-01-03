@@ -30,8 +30,22 @@
 
     <script>
         function fillArray() {
-            // console.log("fillArray")
             return [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        }
+
+        function verificarJogada(button) {
+            if (!button.classList.contains("selected")) {
+                    buttonValue = button.textContent.toString()
+                    jogadorValue = jogador.textContent.toString()
+                    novaJogada(buttonValue, jogadorValue)
+                    button.classList.add("selected")
+                    button.innerText = jogadorValue
+                    if (verificarFim(jogadorValue)) {
+                        setTimeout(resetar, 1000)
+                        return
+                    }
+                    jogador.innerText = mudarJogador(jogadorValue)
+                }
         }
 
         function novaJogada(button, jogador) {
@@ -42,12 +56,9 @@
                     }
                 }
             }
-            console.log(posicoes)
-            // return verificarFim()
         }
 
         function mudarJogador(jogador) {
-            // console.log(jogador)
             if (jogador === "X") return "O"
 
             return "X"
@@ -58,10 +69,11 @@
             let coluna = 0;
             for (let c = 0; c < 3; c++) {
                 for (let i = 0; i < 3; i++) {
+                    // Verifica final em linha
                     if (posicoes[c][i] == jogador) {
                         linha++
                     }
-
+                    // Verifica final em coluna
                     if (posicoes[i][c] == jogador) {
                         coluna++
                     }
@@ -71,7 +83,7 @@
                 linha = 0
                 coluna = 0
             }
-
+            // Verifica final na diágonal
             if (posicoes[0][0] == jogador && posicoes[1][1] == jogador && posicoes[2][2] == jogador) {
                 return true
             } else if (posicoes[0][2] == jogador && posicoes[1][1] == jogador && posicoes[2][0] == jogador) {
@@ -82,11 +94,11 @@
         function resetar() {
             jogador.innerText = "X"
             posicoes = fillArray()
-            // console.log(posicoes)
             let num = 1;
             buttons.forEach(button => {
                 button.classList.remove("selected")
                 button.innerText = num++
+                button.addEventListener("click", verificarJogada)
             })
         }
 
@@ -94,12 +106,11 @@
         const reset = document.querySelector("#btn-reset")
         const jogador = document.querySelector("#jogador span")
         let posicoes = fillArray()
-        // console.log(posicoes[0][0])
         let buttonValue;
         let jogadorValue;
     
         buttons.forEach(button => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", verificarJogada(button) {
                 if (!button.classList.contains("selected")) {
                     buttonValue = button.textContent.toString()
                     jogadorValue = jogador.textContent.toString()
@@ -108,6 +119,7 @@
                     button.innerText = jogadorValue
                     if (verificarFim(jogadorValue)) {
                         setTimeout(resetar, 1000)
+                        return
                     }
                     jogador.innerText = mudarJogador(jogadorValue)
                 }
