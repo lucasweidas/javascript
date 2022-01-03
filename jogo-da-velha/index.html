@@ -33,19 +33,21 @@
             return [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
         }
 
-        function verificarJogada(button) {
-            if (!button.classList.contains("selected")) {
-                    buttonValue = button.textContent.toString()
-                    jogadorValue = jogador.textContent.toString()
-                    novaJogada(buttonValue, jogadorValue)
-                    button.classList.add("selected")
-                    button.innerText = jogadorValue
-                    if (verificarFim(jogadorValue)) {
-                        setTimeout(resetar, 1000)
-                        return
+        function novoJogo() {
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    if (verificarFim(jogadorValue)) return
+                    
+                    if (!button.classList.contains("selected")) {
+                        buttonValue = button.textContent.toString()
+                        jogadorValue = jogador.textContent.toString()
+                        novaJogada(buttonValue, jogadorValue)
+                        button.classList.add("selected")
+                        button.innerText = jogadorValue
+                        jogador.innerText = mudarJogador(jogadorValue)
                     }
-                    jogador.innerText = mudarJogador(jogadorValue)
-                }
+                })
+            })
         }
 
         function novaJogada(button, jogador) {
@@ -98,8 +100,8 @@
             buttons.forEach(button => {
                 button.classList.remove("selected")
                 button.innerText = num++
-                button.addEventListener("click", verificarJogada)
             })
+            novoJogo()
         }
 
         const buttons = document.querySelectorAll(".btn")
@@ -109,22 +111,7 @@
         let buttonValue;
         let jogadorValue;
     
-        buttons.forEach(button => {
-            button.addEventListener("click", verificarJogada(button) {
-                if (!button.classList.contains("selected")) {
-                    buttonValue = button.textContent.toString()
-                    jogadorValue = jogador.textContent.toString()
-                    novaJogada(buttonValue, jogadorValue)
-                    button.classList.add("selected")
-                    button.innerText = jogadorValue
-                    if (verificarFim(jogadorValue)) {
-                        setTimeout(resetar, 1000)
-                        return
-                    }
-                    jogador.innerText = mudarJogador(jogadorValue)
-                }
-            })
-        })
+        novoJogo()
 
         reset.addEventListener("click", resetar);
     </script>
