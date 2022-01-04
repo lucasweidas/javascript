@@ -12,6 +12,10 @@
         <div class="container">
             <div class="jogador-c">
                 <p id="jogador">Jogador atual: <span>X</span></p>
+                <div class="resultado-c">
+                    <p id="vencedor"></p>
+                    <p id="res"></p>
+                </div>
             </div>
             <div class="jogo">
                 <button class="btn">1</button>
@@ -35,6 +39,7 @@
 
         function verificarJogada(buttonValue, button) {
             if (buttonValue != "X" && buttonValue != "O" && !fim) {
+                empate++
                 novaJogada(buttonValue, button)
             }
         }
@@ -50,7 +55,7 @@
             }
             button.classList.add("selected")
             button.innerText = jogadorValue
-            if (verificarFim(jogadorValue)) {
+            if (verificarFim(jogadorValue, button)) {
                 return
             }
             mudarJogador(jogadorValue)
@@ -64,48 +69,101 @@
             }
         }
 
-        function verificarFim(jogadorValue) {
-            console.log("verificando")
-            let linha = 0;
-            let coluna = 0;
+        function verificarFim(jogadorValue, button) {
+            let linha = [0, 0];
+            let coluna = [0, 0];
             for (let c = 0; c < 3; c++) {
                 for (let l = 0; l < 3; l++) {
                     // Verifica final em coluna
                     if (posicoes[l][c] == jogadorValue) {
-                        coluna++
+                        coluna[0]++
+                        coluna[1] = c
                     }
                     // Verifica final em linha
                     if (posicoes[c][l] == jogadorValue) {
-                        linha++
+                        linha[0]++
+                        linha[1] = c
                     }
                 }
-                if (linha === 3) {
-                    console.log(`linha: ${posicoes}`)
+                if (linha[0] === 3) {
+                    jogoFinalizado("linha", linha[1], jogadorValue)
                     return fim = true
-                } else if (coluna === 3) {
-                    console.log(`coluna: ${posicoes}`)
+                } else if (coluna[0] === 3) {
+                    jogoFinalizado("coluna", coluna[1], jogadorValue)
                     return fim = true
                 }
-                linha = 0
-                coluna = 0
+                linha = [0, 0]
+                coluna = [0, 0]
             }
             // Verifica final na diágonal
             if (posicoes[0][0] == jogadorValue && posicoes[1][1] == jogadorValue && posicoes[2][2] == jogadorValue) {
-                console.log(`diagonal 1: ${posicoes}`)
+                jogoFinalizado("diagonal 1", 0, jogadorValue)
                 return fim = true
             } else if (posicoes[0][2] == jogadorValue && posicoes[1][1] == jogadorValue && posicoes[2][0] == jogadorValue) {
-                console.log(`diagonal 2: ${posicoes}`)
+                jogoFinalizado("diagonal 2", 0, jogadorValue)
                 return fim = true
+            }
+            if (empate === 9) {
+                jogoFinalizado("empate", 0, "empate")
+            }
+        }
+
+        function jogoFinalizado(tipo, posicao, jogadorValue) {
+            resultado.classList.add("mostrar")
+            if (tipo === "empate") {
+                resultado.classList.add("empate")
+                res.innerText = "EMPATE!"
+                return fim = true
+            }
+            console.log(jogadorValue)
+            vencedor.innerText = `"${jogadorValue}"`
+            res.innerText = "GANHOU!"
+            let locais = []
+
+            if (tipo === "linha") {
+                if (posicao === 0) {
+                    locais.push(1, 2, 3)
+                } else if (posicao === 1) {
+                    locais.push(4, 5, 6)
+                } else {
+                    locais.push(7, 8, 9)
+                }
+            } else if (tipo === "coluna") {
+                if (posicao === 0) {
+                    locais.push(1, 4, 7)
+                } else if (posicao === 1) {
+                    locais.push(2, 5, 8)
+                } else {
+                    locais.push(3, 6, 9)
+                }
+            } else if (tipo === "diagonal 1") {
+                locais.push(1, 5, 9)
+            } else if (tipo === "diagonal 2") {
+                locais.push(3, 5, 7)
+            }
+
+            let i = 1
+            for (const button of buttons) {
+                if (locais.includes(i)) {
+                    button.classList.add("posicao-ganhador")
+                }
+                i++
             }
         }
 
         function resetar() {
             fim = false
+            empate = 0
+            resultado.classList.remove("mostrar")
+            resultado.classList.remove("empate")
+            vencedor.textContent = ""
+            res.textContent = ""
             jogador.innerText = "X"
             posicoes = fillArray()
             let num = 1;
             buttons.forEach(button => {
                 button.classList.remove("selected")
+                button.classList.remove("posicao-ganhador")
                 button.innerText = num++
             })
         }
@@ -113,8 +171,12 @@
         const buttons = document.querySelectorAll(".btn")
         const reset = document.querySelector("#btn-reset")
         const jogador = document.querySelector("#jogador span")
+        const resultado = document.querySelector(".resultado-c")
+        const vencedor = document.querySelector("#vencedor")
+        const res = document.querySelector("#res")
         let posicoes = fillArray()
         let fim = false
+        let empate = 0
 
         buttons.forEach(button => {
             button.addEventListener("click", () => {
