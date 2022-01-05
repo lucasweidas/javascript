@@ -23,9 +23,5 @@
     }, 1000);
 })();
 
-function mula() {
-    console.log("mula");
-}
-
 const horaAtual = document.querySelector("#hora-atual");
 const image = document.querySelector("#image");
