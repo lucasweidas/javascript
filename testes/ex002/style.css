@@ -19,7 +19,7 @@ body {
     background-color: var(--clr-light-blue);
 }
 
-.slider {
+.slider-container {
     width: clamp(1vw, 100%, 800px);
     border-radius: 0.75rem;
     overflow: hidden;
@@ -27,93 +27,61 @@ body {
     margin-inline: 1rem;
 }
 
-.slides {
-    width: 400%;
-    height: 100%;
-    display: flex;
-}
-
-.slides input {
-    display: none;
-}
-
 .slide {
-    width: 25%;
-    transition-duration: 2000ms;
+    width: 100%;
+    display: flex;
+    transition: transform 1000ms ease;
+}
+
+.slider-container input {
+    display: none;
 }
 
 .slide img {
     width: 100%;
-    height: 100%;
 }
 
-/* Manual slide nagivation */
-.manual-navigation {
+.navigation-container {
     position: absolute;
     width: 100%;
-    bottom: 40px;
+    bottom: 8%;
     display: flex;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 5%;
+    z-index: 10;
 }
 
-.manual-btn {
+.slide-btn {
     border: 2px solid var(--clr-light-green);
     padding: 0.3rem;
     border-radius: 50%;
     cursor: pointer;
-    transition-duration: 1000ms;
+    transition-duration: 580ms;
 }
 
-.manual-btn:hover {
+.slide-btn:hover {
     background-color: var(--clr-light-green);
 }
 
-#radio1:checked ~ .first {
-    margin-left: 0;
+#radio1:checked ~ .slide {
+    transform: translateX(0);
 }
 
-#radio2:checked ~ .first {
-    margin-left: -25%;
+#radio2:checked ~ .slide {
+    transform: translateX(-100%);
 }
 
-#radio3:checked ~ .first {
-    margin-left: -50%;
+#radio3:checked ~ .slide {
+    transform: translateX(-200%);
 }
 
-#radio4:checked ~ .first {
-    margin-left: -75%;
+#radio4:checked ~ .slide {
+    transform: translateX(-300%);
 }
 
-/* Automatic slide navigation */
-.auto-navigation {
-    position: absolute;
-    width: 100%;
-    bottom: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-}
-
-.auto-navigation div {
-    border: 2px solid var(--clr-light-green);
-    padding: 0.3rem;
-    border-radius: 50%;
-    transition-duration: 1000ms;
-}
-
-#radio1:checked ~ .auto-navigation .auto-btn1 {
-    background-color: var(--clr-light-green);
-}
-
-#radio2:checked ~ .auto-navigation .auto-btn2 {
-    background-color: var(--clr-light-green);
-}
-
-#radio3:checked ~ .auto-navigation .auto-btn3 {
-    background-color: var(--clr-light-green);
-}
-
-#radio4:checked ~ .auto-navigation .auto-btn4 {
+#radio1:checked ~ .navigation-container #slide-btn1,
+#radio2:checked ~ .navigation-container #slide-btn2,
+#radio3:checked ~ .navigation-container #slide-btn3,
+#radio4:checked ~ .navigation-container #slide-btn4 {
     background-color: var(--clr-light-green);
 }

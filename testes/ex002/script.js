@@ -1,9 +1,9 @@
 (() => {
-    let number = 1;
+    const slideImages = document.querySelectorAll('.slide img');
+    let counter = 1;
     setInterval(() => {
-        console.log('sim');
-        document.querySelector(`#radio${number}`).checked = true;
-        if (number < 4) return number++;
-        number = 1;
+        document.querySelector(`#radio${counter}`).checked = true;
+        if (counter <= slideImages.length -1) return counter++;
+        counter = 1;
     }, 5000);
 })();
