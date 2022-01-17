@@ -1,14 +1,14 @@
 // Exemplo
 
-// function a() {
-//     var b = 10;
-//     c();
-//     function c() {
-//         console.log(b);
-//     }
-// }
+function a() {
+    var b = 10;
+    c();
+    function c() {
+        console.log(b);
+    }
+}
 
-// a();
+a();
 
 /******************/
 // Exemplo
@@ -41,13 +41,13 @@
 /******************/
 // Exemplo
 
-function outer() {
+// function outer() {
 
-    function inner() {
-        console.log(a);
-    }
-    return inner;
-}
-var a = 10;
-var close = outer();
-close();
+//     function inner() {
+//         console.log(a);
+//     }
+//     return inner;
+// }
+// var a = 10;
+// var close = outer();
+// close();
