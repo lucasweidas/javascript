@@ -6,7 +6,7 @@ let b = 2;
     const b = 4;
 }
 
-// Shadowing inválido
+// Shadowing inválido: Vai dar SyntaxError
 let a = 1;
 {
     // var a = 2;
