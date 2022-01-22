@@ -19,8 +19,8 @@ f();
 /*  Usos de Closures
     - Module Design Pattern
     - Currying
-    = Function like once
-    - memoiza
+    - Function like once
+    - memoize
     - maintaining state in async world
     - setTimeouts
     - Iterators
