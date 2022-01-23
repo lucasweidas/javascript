@@ -14,7 +14,7 @@ var b = function () {
 b();
 
 /*********************************************/
-/*  Diferença entre Function Statement e Function Expression? 
+/*  Diferença entre Function Statement e Function Expression?
 A maior diferença entre as duas é o "Hoisting". Lembre-se de como o hoisting funciona. As funções recebem referência para seu bloco de código e as variáveis recebem o valor temporário "undefined". Se você "chamar" uma "function statement" antes da sua declaração no código, ela será executada normalmente. Se você "chamar" uma "function expression" antes da atribuição da função no código, você irá receber um erro "TypeError", pois você está tentando acessar uma função que ainda não foi atribuida à variável, pois à variável antes da atribuição da função, possui o valor "undefined" e undefined não é uma função. */
 c();
 function c() {
@@ -38,7 +38,7 @@ var d = function () {
 Funções anônimas são utilizadas em um lugar onde funções são usadas como valores. Isso diz respeito à quando você atribui uma função à um variável, no caso de uma function expression. */
 
 /*********************************************/
-/*  O que é Named Function Expression? 
+/*  O que é Named Function Expression?
 Named function expression é básicamente o mesmo que uma "function expression". A diferença entre "named function expression" e "function expression", é que em uma named function expression, você atribui uma função com nome à uma variável. Diferente de uma function expression, onde você atribui uma função anônima. */
 var e = function nome() {
     console.log('named function expression:', nome);
@@ -46,7 +46,7 @@ var e = function nome() {
 e();
 
 /*********************************************/
-/*  Diferença entre Parâmetros e Argumentos? 
+/*  Diferença entre Parâmetros e Argumentos?
 "Parâmetros" são variável locais dentro do escopo da função, que recebem o valor passado como "argumento" na chamada da função. */
 function f(parametro) {
     console.log(parametro);
