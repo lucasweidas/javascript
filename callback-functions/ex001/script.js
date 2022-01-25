@@ -11,10 +11,6 @@ function texto(escrever) {
 texto(escrever);
 
 /***********************************************/
-/* O que é Blocking the main thread? 
-A "main thread" é onde o navegador processa eventos e estilos do usuário. Por padrão, o navegador usa uma única thread (fio) para executar todo o JavaScript de sua página, bem como para realizar o layout, reestilos e garbage collection. Isto significa que funções JavaScript de longa duração podem bloquear a main thread, levando a uma página sem resposta e a uma má experiência do usuário. */
-
-/***********************************************/
 /* Qual o poder das Callbacks? 
 Funções callback também nos dão acesso à todo um mundo "asynchronous" em uma linguagem "synchronous thread language".*/
 
@@ -22,6 +18,10 @@ Funções callback também nos dão acesso à todo um mundo "asynchronous" em um
 setTimeout(function () {
     console.log('asynchronous callback function');
 }, 5000);
+
+/***********************************************/
+/* O que é Blocking the main thread? 
+A "main thread" é onde o navegador processa eventos e estilos do usuário. Por padrão, o navegador usa uma única thread (fio) para executar todo o JavaScript de sua página, bem como para realizar o layout, reestilos e garbage collection. Isto significa que funções JavaScript de longa duração podem bloquear a main thread, levando a uma página sem resposta e a uma má experiência do usuário. */
 
 /***********************************************/
 /* Garbage Collection e removeEventListeners 
