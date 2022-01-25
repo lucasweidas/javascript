@@ -25,8 +25,8 @@ A "main thread" é onde o navegador processa eventos e estilos do usuário. Por 
 
 /***********************************************/
 /* Garbage Collection e removeEventListeners 
-Event listeners são pesados, e com isso eu quero dizer que eles ocupam espaço na memória, mesmo se a call stack estiver vazia, caso possuam uma closure. Por causa disso, os event listeners precisam ser removidos devido ao seguinte motivo. 
-Evitar memory leaks (vazamentos de memória), caso o navegador não seja manuseado (handled) corretamente. Os navegadores modernos coletam o lixo dos handlers de eventos de elementos DOM removidos, mas isso não é válido em casos de navegadores antigos como o IE, que irão criar vazamentos de memória. */
+Event listeners são pesados, e com isso, eu quero dizer que eles ocupam espaço na memória, mesmo se a call stack estiver vazia, caso possuam uma closure. Por esse motivo, os event listeners precisam ser removidos devido ao seguinte motivo. 
+Evitar memory leaks (vazamentos de memória), caso o navegador não seja handled (manuseado) corretamente. Os navegadores modernos coletam o lixo dos handlers de eventos de elementos DOM removidos, mas isso não é válido em casos de navegadores antigos como o IE, que irão ter vazamentos de memória. */
 
 /***********************************************/
 /* Exemplo de Callback Function, Closure e Event Listener */
