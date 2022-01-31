@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Descending Order in JavaScript</title>
+    </head>
+    <body>
+        <script>
+            function descendingOrder(n) {
+                // First Method
+
+                // const n = 123456789;
+                // let str = n.toString();
+                // let arr = str.split('');
+                // arr = arr.sort((a, b) => b - a);
+                // str = arr.join('');
+                // return Number(str);
+
+                return Number(String(n).split('').sort().reverse().join(''));
+
+                // Second Method
+
+                // const n = 123456789;
+                let str = n.toString();
+                let arr = str.split('');
+                arr = arr.sort();
+                arr = arr.reverse();
+                str = arr.join('');
+                return Number(str);
+
+                // return Number(n.toString().split('').sort((a, b) => b - a).join(''));
+            }
+            console.log(descendingOrder(0), 0);
+            console.log(descendingOrder(1), 1);
+            console.log(descendingOrder(111), 111);
+            console.log(descendingOrder(15), 51);
+            console.log(descendingOrder(1021), 2110);
+            console.log(descendingOrder(123456789), 987654321);
+        </script>
+    </body>
+</html>
