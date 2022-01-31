@@ -1,3 +1,7 @@
+// Trust issue with setTimeout
+
+// A callback passed in a setTimeout may not be executed after the timer expires. This is because the event loop will only add a callback from the "callback queue" or "microtask queue" if the call stack is empty.
+
 console.log('Start');
 
 setTimeout(() => {
@@ -8,10 +12,9 @@ console.log('End');
 
 let startTimer = new Date().getTime();
 let endTimer = startTimer;
-console.log(endTimer);
 
 while (endTimer < startTimer + 10000) {
     endTimer = new Date().getTime();
 }
 
-console.log(endTimer);
+console.log('Timer ended');
