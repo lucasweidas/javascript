@@ -10,6 +10,8 @@ setTimeout(() => {
 
 console.log('End');
 
+// Blocking the Call Stack
+
 let startTimer = new Date().getTime();
 let endTimer = startTimer;
 
