@@ -17,7 +17,7 @@ const diameter = function (radius) {
     return 2 * radius;
 };
 
-// This function is almost identical to the "map method".
+// This function is almost identical to the "map" function.
 Array.prototype.calculate = function (logic) {
     const output = [];
     for (let i = 0; i < this.length; i++) {
