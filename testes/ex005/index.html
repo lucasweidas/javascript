@@ -10,17 +10,13 @@
         <script>
             const radius = [3, 1, 2, 4];
 
-            const area = function (radius) {
-                return Math.PI * radius * radius;
-            };
+            const area = radius => Math.PI * radius * radius;
 
-            const circumference = function (radius) {
-                return 2 * Math.PI * radius;
-            };
+            const circumference = radius => 2 * Math.PI * radius;
 
-            const diameter = function (radius) {
-                return 2 * radius;
-            };
+            const diameter = radius => 2 * radius;
+
+            const addTen = num => num + 10;
 
             Array.prototype.calculate = function (logic) {
                 const output = [];
@@ -33,8 +29,8 @@
             console.log(radius.map(area));
 
             console.log(radius.calculate(area));
-            // console.log(calculate(radius, circumference));
-            // console.log(calculate(radius, diameter));
+            console.log(radius.calculate(circumference));
+            console.log(radius.calculate(diameter));
         </script>
     </body>
 </html>

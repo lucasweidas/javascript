@@ -1,6 +1,6 @@
-// Higher Order Functions:
+// Higher-Order Functions:
 // This is when a function takes another function as an argument or returns another function.
-// The function passed as an argument to another function is known as a callback function.
+// The function passed as an argument to the higher-order function is known as a callback function.
 // This is only possible, because functions are First Class Citizens (First Class Function) in JavaScript.
 
 const radius = [3, 1, 2, 4];
@@ -26,8 +26,10 @@ Array.prototype.calculate = function (logic) {
     return output;
 };
 
+// "map" function
 console.log(radius.map(area));
 
+// "calculate" function
 console.log(radius.calculate(area));
 console.log(radius.calculate(circumference));
 console.log(radius.calculate(diameter));
