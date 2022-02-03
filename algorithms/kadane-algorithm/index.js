@@ -1,6 +1,17 @@
 // Maximum Subarray Sum (Kadane's Algorithm)
 
-const maxSequence = function (arr) {
+// First away to do this
+const maxSequence = arr => {
+    let sum = 0;
+    return arr.reduce((max, curr) => {
+        sum = Math.max(sum + curr, 0);
+        return Math.max(sum, max);
+    }, 0);
+}
+console.log(maxSequence(-2, 1, -3, 4, -1, 2, 1, -5, 4));
+
+// Second away to do this
+const maxSequence2 = function (arr) {
     if (arr.length === 0) return 0;
     let sum = 0;
     let max = arr[0];
@@ -12,7 +23,7 @@ const maxSequence = function (arr) {
     if (max < 0) return 0;
     return max;
 };
-console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+// console.log(maxSequence2([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
 
 // What each loop interation does, considering the array: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
