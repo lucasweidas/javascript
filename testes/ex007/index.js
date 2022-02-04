@@ -1,16 +1,6 @@
-function findOutlier(integers) {
-    let outlier = integers.reduce(
-        (acc, curr) => {
-            if (curr % 2) {
-                acc[0].push(curr);
-            } else {
-                acc[1].push(curr);
-            }
-            return acc;
-        },
-        [[], []]
-    );
-    if (outlier[0].length < outlier[1].length) return outlier[0].pop();
-    return outlier[1].pop();
+function digital_root(n) {
+    n = String(n).split('').reduce((sum, num) => sum += parseInt(num), 0);
+    if (n > 9) return digital_root(n);
+    return n;
 }
-console.log(findOutlier([21, 61, 81, 101, 30]));
+console.log(digital_root(456));
