@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    place-items: center;
+}
+
+main {
+    width: clamp(1px, 100%, 1000px);
+    background-color: #494949;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttons-c {
+    width: clamp(1px, 100%, 500px);
+    display: flex;
+    gap: 0.5em;
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #000;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 1rem;
+}
