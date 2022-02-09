@@ -1,0 +1,36 @@
+body {
+    min-height: 100vh;
+}
+
+body,
+.grandparent,
+.parent,
+.child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grandparent {
+    width: 400px;
+    height: 400px;
+    background-color: brown;
+}
+
+.parent {
+    width: 65%;
+    height: 65%;
+    background-color: cornflowerblue;
+}
+
+.child {
+    width: 55%;
+    height: 55%;
+    background-color: goldenrod;
+}
+
+.child2 {
+    width: 45%;
+    height: 45%;
+    background-color: dimgray;
+}

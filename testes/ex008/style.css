@@ -1,0 +1,36 @@
+body {
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: darkgrey;
+}
+
+.button {
+    align-self: flex-end;
+}
+
+.menu {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background-color: brown;
+    transition: opacity 500ms ease;
+}
+
+.menu.open {
+    opacity: 1;
+}
