@@ -1,0 +1,28 @@
+body {
+    min-height: 100vh;
+    padding-top: 2rem;
+    font-family: sans-serif;
+    font-size: 1.125rem;
+}
+
+body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#list {
+    /* list-style: none; */
+    padding: 0;
+    list-style-position: inside;
+}
+
+.list-item {
+    width: max-content;
+    color: rgb(40, 115, 253);
+}
+
+.list-item:hover {
+    color: brown;
+    text-decoration: line-through;
+}
