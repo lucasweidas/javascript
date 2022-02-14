@@ -1,16 +1,11 @@
-function solution(input, markers) {
-  markers = ["%", "!"];
-  input = "apples, plums % and bananas\npears\noranges !applesauce";
-  const reg = /^[a-zA-Z,]*$/;
-  return input.split('\n').reduce((res, str) => {
-    if (reg.test(str)) {
-      res.push(str);
-      return res;
-    }
-    markers.forEach(mark => {
-      str.includes(mark) && res.push(str.slice(0, str.indexOf(mark) - 1));
-    });
-    return res;
-  }, []).join('\n');
+function numberToAccountingString(number) {
+  if (number == null) return;
+  if (number < 0) return `(${Math.abs(number)})`;
+  return number.toString();
 }
-console.log(solution());
+
+console.log(numberToAccountingString(undefined));
+console.log(numberToAccountingString(null));
+console.log(numberToAccountingString(0));
+console.log(numberToAccountingString(10));
+console.log(numberToAccountingString(-5));
