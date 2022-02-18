@@ -1,40 +1,51 @@
+/********** great-grandparent **********/
+document.querySelector('#great-grandparent').addEventListener('click', event => {
+  console.log('Bubbling:', event.currentTarget);
+});
+
 document.querySelector('#great-grandparent').addEventListener(
   'click',
-  evt => {
-    console.log(evt.currentTarget);
+  event => {
+    console.log('Capturing:', event.currentTarget);
   },
-  true
+  { capture: true }
 );
+
+/********** grandparent **********/
+document.querySelector('#grandparent').addEventListener('click', event => {
+  console.log('Bubbling:', event.currentTarget);
+});
 
 document.querySelector('#grandparent').addEventListener(
   'click',
-  evt => {
-    console.log(evt.currentTarget);
+  event => {
+    console.log('Capturing:', event.currentTarget);
   },
-  false
+  { capture: true }
 );
+
+/********** parent **********/
+document.querySelector('#parent').addEventListener('click', event => {
+  console.log('Bubbling:', event.currentTarget);
+});
 
 document.querySelector('#parent').addEventListener(
   'click',
-  evt => {
-    console.log(evt.currentTarget);
-    evt.stopPropagation();
+  event => {
+    console.log('Capturing:', event.currentTarget);
   },
-  true
+  { capture: true }
 );
+
+/********** child **********/
+document.querySelector('#child').addEventListener('click', event => {
+  console.log('Bubbling:', event.currentTarget);
+});
 
 document.querySelector('#child').addEventListener(
   'click',
-  evt => {
-    console.log(evt.currentTarget);
+  event => {
+    console.log('Capturing:', event.currentTarget);
   },
-  false
+  { capture: true }
 );
-
-// document.querySelector('#child').addEventListener(
-//   'click',
-//   evt => {
-//     console.log(evt.currentTarget);
-//   },
-//   { capture: true }
-// );
