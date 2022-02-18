@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling and Capturing</title>
+    <style>
+      #great-grandparent {
+        display: grid;
+        place-content: center;
+        width: 400px;
+        height: 400px;
+        background-color: brown;
+      }
+      #grandparent {
+        display: grid;
+        place-content: center;
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+      }
+      #parent {
+        display: grid;
+        place-content: center;
+        width: 200px;
+        height: 200px;
+        background-color: coral;
+      }
+      #child {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="great-grandparent">
+      <div id="grandparent">
+        <div id="parent">
+          <div id="child"></div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
